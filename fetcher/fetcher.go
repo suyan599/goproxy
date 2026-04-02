@@ -69,18 +69,22 @@ var slowUpdateSources = []Source{
 	{"https://cdn.jsdelivr.net/gh/proxy4parsing/proxy-list/socks5.txt", "socks5"},
 }
 
-// 所有源
-var allSources = append(fastUpdateSources, slowUpdateSources...)
-
 type Fetcher struct {
 	sources       []Source
+	fastSources   []Source
+	slowSources   []Source
 	client        *http.Client
 	sourceManager *SourceManager
 }
 
 func New(httpURL, socks5URL string, sourceManager *SourceManager) *Fetcher {
+	fastSources := append(append([]Source{}, fastUpdateSources...), additionalSources...)
+	slowSources := append(append([]Source{}, slowUpdateSources...), additionalSources...)
+
 	return &Fetcher{
-		sources:       allSources,
+		sources:       mergeSourceLists(fastSources, slowSources),
+		fastSources:   fastSources,
+		slowSources:   slowSources,
 		sourceManager: sourceManager,
 		client: &http.Client{
 			Timeout: 30 * time.Second,
@@ -95,21 +99,21 @@ func (f *Fetcher) FetchSmart(mode string, preferredProtocol string) ([]storage.P
 	switch mode {
 	case "emergency":
 		// 紧急模式：忽略断路器，强制使用所有源（包括被禁用的）
-		sources = f.filterAvailableSources(allSources, preferredProtocol, true)
+		sources = f.filterAvailableSources(f.sources, preferredProtocol, true)
 		log.Printf("[fetch] 🚨 紧急模式: 使用 %d 个源（忽略断路器）", len(sources))
 
 	case "refill":
 		// 补充模式：使用快更新源
-		sources = f.filterAvailableSources(fastUpdateSources, preferredProtocol, false)
+		sources = f.filterAvailableSources(f.fastSources, preferredProtocol, false)
 		log.Printf("[fetch] 🔄 补充模式: 使用 %d 个快更新源", len(sources))
 
 	case "optimize":
 		// 优化模式：随机选择2-3个慢更新源
-		sources = f.selectRandomSources(slowUpdateSources, 3, preferredProtocol)
+		sources = f.selectRandomSources(f.slowSources, 3, preferredProtocol)
 		log.Printf("[fetch] ⚡ 优化模式: 使用 %d 个源", len(sources))
 
 	default:
-		sources = f.filterAvailableSources(fastUpdateSources, preferredProtocol, false)
+		sources = f.filterAvailableSources(f.fastSources, preferredProtocol, false)
 	}
 
 	if len(sources) == 0 {
@@ -153,6 +157,24 @@ func (f *Fetcher) selectRandomSources(sources []Source, count int, preferredProt
 	}
 
 	return shuffled[:count]
+}
+
+func mergeSourceLists(groups ...[]Source) []Source {
+	merged := make([]Source, 0)
+	seen := make(map[string]struct{})
+
+	for _, group := range groups {
+		for _, src := range group {
+			key := src.Protocol + "|" + src.URL
+			if _, ok := seen[key]; ok {
+				continue
+			}
+			seen[key] = struct{}{}
+			merged = append(merged, src)
+		}
+	}
+
+	return merged
 }
 
 // fetchFromSources 从指定源列表抓取
