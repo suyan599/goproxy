@@ -70,7 +70,7 @@ docker run -d --name proxygo \
   -e BLOCKED_COUNTRIES=CN,RU \
   -e WEBUI_PASSWORD=your_password \
   -v "$(pwd)/data:/app/data" \
-  ghcr.io/isboyjc/goproxy:latest
+  ghcr.io/suyan599/goproxy:latest
 
 # 白名单模式
 docker run -d --name proxygo \
@@ -78,7 +78,7 @@ docker run -d --name proxygo \
   -e ALLOWED_COUNTRIES=US,JP,KR,SG \
   -e WEBUI_PASSWORD=your_password \
   -v "$(pwd)/data:/app/data" \
-  ghcr.io/isboyjc/goproxy:latest
+  ghcr.io/suyan599/goproxy:latest
 ```
 
 ### 本地运行配置

@@ -42,6 +42,16 @@ var slowUpdateSources = []Source{
 	{"https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt", "http"},
 	{"https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt", "socks5"},
 	{"https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt", "socks5"},
+	// Jetkai - online checked list
+	{"https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-http.txt", "http"},
+	{"https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-https.txt", "http"},
+	{"https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-socks4.txt", "socks5"},
+	{"https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-socks5.txt", "socks5"},
+	// ShiftyTR
+	{"https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/http.txt", "http"},
+	{"https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt", "http"},
+	{"https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks4.txt", "socks5"},
+	{"https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks5.txt", "socks5"},
 	// monosans SOCKS
 	{"https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks4.txt", "socks5"},
 	{"https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt", "socks5"},
@@ -67,6 +77,24 @@ var slowUpdateSources = []Source{
 	// proxy4parsing
 	{"https://cdn.jsdelivr.net/gh/proxy4parsing/proxy-list/http.txt", "http"},
 	{"https://cdn.jsdelivr.net/gh/proxy4parsing/proxy-list/socks5.txt", "socks5"},
+	// ItzRazvyy
+	{"https://raw.githubusercontent.com/ItzRazvyy/ProxyList/main/http.txt", "http"},
+	{"https://raw.githubusercontent.com/ItzRazvyy/ProxyList/main/https.txt", "http"},
+	{"https://raw.githubusercontent.com/ItzRazvyy/ProxyList/main/socks4.txt", "socks5"},
+	{"https://raw.githubusercontent.com/ItzRazvyy/ProxyList/main/socks5.txt", "socks5"},
+	// ErcinDedeoglu
+	{"https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/http.txt", "http"},
+	{"https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/https.txt", "http"},
+	{"https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/socks4.txt", "socks5"},
+	{"https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/socks5.txt", "socks5"},
+	// B4RC0DE-TM
+	{"https://raw.githubusercontent.com/B4RC0DE-TM/proxy-list/main/HTTP.txt", "http"},
+	{"https://raw.githubusercontent.com/B4RC0DE-TM/proxy-list/main/SOCKS4.txt", "socks5"},
+	{"https://raw.githubusercontent.com/B4RC0DE-TM/proxy-list/main/SOCKS5.txt", "socks5"},
+	// Vann-Dev
+	{"https://raw.githubusercontent.com/Vann-Dev/proxy-list/refs/heads/main/proxies/http.txt", "http"},
+	{"https://raw.githubusercontent.com/Vann-Dev/proxy-list/refs/heads/main/proxies/https.txt", "http"},
+	{"https://raw.githubusercontent.com/Vann-Dev/proxy-list/refs/heads/main/proxies/socks4.txt", "socks5"},
 }
 
 // 所有源

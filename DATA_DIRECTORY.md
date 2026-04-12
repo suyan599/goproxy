@@ -174,7 +174,7 @@ volumes:
 docker run -d \
   -v "$(pwd)/data:/app/data" \  # 挂载 data 目录
   -e DATA_DIR=/app/data \        # 告诉程序数据目录位置
-  ghcr.io/isboyjc/goproxy:latest
+  ghcr.io/suyan599/goproxy:latest
 ```
 
 ## 📊 数据大小
